@@ -23,7 +23,7 @@ Crypto-Sphere is a simple yet powerful crypto market tracker that fetches real-t
 ### Clone the repository
 
 ```sh
-git clone https://github.com/yourusername/crypto-sphere.git
+git clone https://github.com/christopher-becker/crypto-sphere.git
 cd crypto-sphere
 npm install
 npm run dev
