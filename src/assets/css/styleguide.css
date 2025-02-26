@@ -1,0 +1,16 @@
+@import "tailwindcss";
+
+@theme {
+  --shadow-outline-white: 0 0 0 2px theme(colors.slate.50);
+  --shadow-double-outline-blue: 0 0 10px theme(colors.blue.500),
+    0 0 0 2px theme(colors.blue.500);
+}
+
+/* Custom Tailwind utility classes */
+.shadow-outline-white {
+  box-shadow: var(--shadow-outline-white);
+}
+
+.shadow-double-outline-blue {
+  box-shadow: var(--shadow-double-outline-blue);
+}

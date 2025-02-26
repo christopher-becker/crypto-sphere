@@ -1,9 +1,8 @@
-@import "tailwindcss";
+@import "./assets/css/styleguide.css";
 
-@theme {
-}
-
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
 }
 
@@ -28,7 +27,7 @@ h5 {
 }
 
 input {
-  @apply h-8 px-4 bg-gray-900 rounded-xl hover:shadow-[0_0_0_2px_#ffffff] focus:shadow-[0_0_10px_#0055ff,0_0_0_2px_#0055ff] outline-none transition-all;
+  @apply h-8 px-4 bg-gray-900 rounded-xl hover:shadow-outline-white focus:shadow-double-outline-blue outline-none transition-all;
 }
 
 .page-layout {
