@@ -1,41 +1,44 @@
 @import "tailwindcss";
 
+@theme {
+}
+
 * {
-    box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 body {
-    @apply bg-gray-950 text-gray-50 cursor-default p-0;
+  @apply bg-gray-950 text-gray-50 cursor-default p-0;
 }
 
 main {
-    @apply px-1 sm:px-2
+  @apply px-1 sm:px-2;
 }
 
 h1 {
-    @apply text-4xl sm:text-5xl font-bold;
+  @apply text-4xl sm:text-5xl font-bold;
 }
 
 h2 {
-    @apply text-2xl sm:text-4xl font-bold;
+  @apply text-2xl sm:text-4xl font-bold;
 }
 
 h5 {
-    @apply font-bold;
+  @apply font-bold;
 }
 
 input {
-    @apply h-8 px-4 bg-gray-900 rounded-xl hover:shadow-[0_0_0_2px_#ffffff] focus:shadow-[0_0_10px_#0055ff,0_0_0_2px_#0055ff] outline-none transition-all;
+  @apply h-8 px-4 bg-gray-900 rounded-xl hover:shadow-[0_0_0_2px_#ffffff] focus:shadow-[0_0_10px_#0055ff,0_0_0_2px_#0055ff] outline-none transition-all;
 }
 
 .page-layout {
-    @apply flex flex-col gap-12 max-w-3xl m-auto py-8;
+  @apply flex flex-col gap-12 max-w-3xl m-auto py-8;
 }
 
 header {
-    @apply bg-gray-950 border-b border-gray-800 sticky left-0 top-0 w-full px-1 lg:px-4 z-10;
+  @apply bg-gray-950 border-b border-gray-800 sticky left-0 top-0 w-full px-1 lg:px-4 z-10;
 }
 
 header nav a {
-    @apply py-4 hover:text-blue-700;
+  @apply py-4 hover:text-blue-700;
 }
