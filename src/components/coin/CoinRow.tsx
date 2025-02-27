@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { CoinType } from "../../core/types/coinGecko.type";
+import { CoinDirection, CoinType } from "../../core/types/coinGecko.type";
 import {
   formatCryptoPrice,
   formatPercentage,
@@ -19,6 +19,11 @@ export default function CoinRow({ coin }: { coin: CoinType }) {
     () => formatPercentage(coin.price_change_percentage_24h, 2),
     [coin.price_change_percentage_24h]
   );
+  const directionClass = useMemo(() => {
+    if (coin.direction === CoinDirection.UP) return "animate-flash-green";
+    if (coin.direction === CoinDirection.DOWN) return "animate-flash-red";
+    return "";
+  }, [coin.direction]);
   return (
     <li className="border-b border-slate-900 hover:bg-slate-900 transition-all">
       <Link to={`/coin/${coin.id}`} className="group block p-2 py-4 sm:p-4">
@@ -40,7 +45,9 @@ export default function CoinRow({ coin }: { coin: CoinType }) {
             </span>
           </div>
           <div className="flex flex-col sm:flex-row sm:gap-5">
-            <span className="sm:w-24 text-right">${formattedPrice}</span>
+            <span className={`sm:w-24 text-right ${directionClass}`}>
+              ${formattedPrice}
+            </span>
             <span
               className={`text-sm sm:text-base sm:w-24 text-right ${getPercentageMoveClass(
                 coin.price_change_percentage_24h

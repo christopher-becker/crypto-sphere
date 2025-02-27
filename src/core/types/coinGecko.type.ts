@@ -25,4 +25,11 @@ export type CoinType = {
   atl_date: string;
   roi: null;
   last_updated: string;
+  direction: CoinDirection;
 };
+
+export enum CoinDirection {
+  "UP",
+  "DOWN",
+  "NONE",
+}

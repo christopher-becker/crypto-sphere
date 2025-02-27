@@ -14,3 +14,31 @@
 .shadow-double-outline-blue {
   box-shadow: var(--shadow-double-outline-blue);
 }
+
+@layer utilities {
+  @keyframes flash-green {
+    0% {
+      color: theme("colors.green.500");
+    }
+    100% {
+      color: theme("colors.white");
+    }
+  }
+
+  @keyframes flash-red {
+    0% {
+      color: theme("colors.red.500");
+    }
+    100% {
+      color: theme("colors.white");
+    }
+  }
+
+  .animate-flash-green {
+    animation: flash-green 4s ease-out;
+  }
+
+  .animate-flash-red {
+    animation: flash-red 4s ease-out;
+  }
+}
