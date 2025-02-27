@@ -33,6 +33,7 @@ export default function SearchCoin() {
     <>
       <div className="relative">
         <input
+          data-testid="search-coin"
           placeholder="Search"
           type="text"
           value={filterValue}
