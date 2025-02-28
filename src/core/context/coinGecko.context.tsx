@@ -49,7 +49,7 @@ export const CoinGeckoProvider = ({ children }: PropsWithChildren<unknown>) => {
   }, [currency]);
 
   function updateList(data: Binance24hrTickerType) {
-    const removeTicker = data.s.toLowerCase().replace("usdt", "");
+    const removeTicker = data.s.toLowerCase().replace(currency, "");
     setList((current) =>
       current.map((coin) =>
         coin.symbol.toLowerCase() === removeTicker
