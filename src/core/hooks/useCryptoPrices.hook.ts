@@ -4,13 +4,13 @@ import { CoinType } from "../types/coinGecko.type";
 import { BINANCE_WSS_URL } from "../constants/config.const";
 
 export default function useCryptoPrices(coins: CoinType[]) {
-  const { list, updateList } = useContext(CoinGeckoContext);
+  const { list, updateList, currency } = useContext(CoinGeckoContext);
 
   useEffect(() => {
     if (!list) return;
     const tickerList = coins
       .slice(0, 100)
-      .map((coin) => `${coin.symbol.toLowerCase()}usdt@ticker`)
+      .map((coin) => `${coin.symbol.toLowerCase()}${currency}@ticker`)
       .join("/");
 
     if (!tickerList) return;
