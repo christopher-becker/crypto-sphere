@@ -1,32 +1,31 @@
 @import "tailwindcss";
 
 .ticker-marquee {
-    @apply bg-gray-950 border-t border-gray-800 text-sm overflow-hidden select-none flex pb-2 pt-2;
-    --gap: 20px;
-    gap: var(--gap);
-
+  @apply bg-gray-950 border-t border-gray-800 text-sm overflow-hidden select-none flex pb-2 pt-2;
+  --gap: 24px;
+  gap: var(--gap);
 }
 
 .ticker-marquee ul {
-    @apply list-none min-w-full flex justify-between items-center shrink-0;
-    gap: var(--gap);
-    animation: scroll calc(3s * var(--quantity)) linear infinite;
+  @apply list-none min-w-full flex justify-between items-center shrink-0;
+  gap: var(--gap);
+  animation: scroll calc(6s * var(--quantity)) linear infinite;
 }
 
 .ticker-marquee:hover ul {
-    animation-play-state: paused;
+  animation-play-state: paused;
 }
 
 .ticker-marquee:hover ul li {
-    @apply transition-all opacity-30;
+  @apply transition-all opacity-30;
 }
 
 .ticker-marquee ul li:hover {
-    @apply transition-all opacity-100 cursor-pointer;
+  @apply transition-all opacity-100 cursor-pointer;
 }
 
 @keyframes scroll {
-    to {
-        transform: translateX(calc(-100% - var(--gap)));
-    }
+  to {
+    transform: translateX(calc(-100% - var(--gap)));
+  }
 }

@@ -1,45 +1,36 @@
-import { useContext } from "react";
-import { CoinGeckoContext } from "../../core/context/coinGecko.context";
-import {
-  getPercentageMoveClass,
-  getPercentageMoveSymbol,
-} from "../../core/utils/percentage.util";
-import {
-  formatCryptoPrice,
-  formatPercentage,
-} from "../../core/utils/format.util";
 import "./ticker-marquee.css";
 import { Link } from "react-router-dom";
+import { getNewsList } from "../../api/newsAPI";
+import { NewsList } from "../../core/types/news.type";
+import { useEffect, useState } from "react";
 
 export default function TickerMarquee() {
-  const { list = [] } = useContext(CoinGeckoContext);
-  const style = { "--quantity": list.length || 10 } as React.CSSProperties;
+  const [list, setList] = useState<NewsList | undefined>();
 
-  const marqueeCoinList = list.map((coin) => {
-    const priceChange = coin.price_change_percentage_24h ?? 0;
-    const formattedChange = formatPercentage(priceChange, 2);
-    const formattedPriceChange = formatCryptoPrice(coin.price_change_24h ?? 0);
+  useEffect(() => {
+    async function fetchNews() {
+      const newsList: NewsList = await getNewsList();
+      setList(newsList);
+    }
+    fetchNews();
+  }, []);
 
-    return (
-      <li key={coin.id}>
-        <Link to={`/coin/${coin.id}`} className="flex gap-1">
-          <span className={getPercentageMoveClass(priceChange)}>
-            {getPercentageMoveSymbol(priceChange)}
-          </span>
-          <span>{coin.name}</span>
-          <span className={getPercentageMoveClass(priceChange)}>
-            <span className="hidden sm:inline-flex">
-              {formattedPriceChange}
-            </span>
-            ({formattedChange})
-          </span>
-        </Link>
-      </li>
-    );
-  });
+  if (!list) return null;
+
+  const style = {
+    "--quantity": list.stories.length,
+  } as React.CSSProperties;
+
+  const marqueeCoinList = list.stories.map((story) => (
+    <li key={story.id} className="pl-6 border-l border-gray-500">
+      <Link to={story.url} target="_blank" className="flex gap-2 items-center">
+        <span>{story.title}</span>
+      </Link>
+    </li>
+  ));
 
   return (
-    <div className="fixed left-0 bottom-0 w-full">
+    <div className="fixed left-0 bottom-0 w-full text-gray-50">
       <div className="ticker-marquee" style={style}>
         <ul>{marqueeCoinList}</ul>
         <ul aria-hidden="true">{marqueeCoinList}</ul>

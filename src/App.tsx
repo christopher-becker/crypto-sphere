@@ -2,6 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import HomePage from "./pages/home-page/HomePage";
 import CoinPage from "./pages/coin-page/CoinPage";
 import Header from "./components/Header";
+import TickerMarquee from "./components/ticker-marquee/TickerMarquee";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/coin/:id" element={<CoinPage />} />
       </Routes>
+      <TickerMarquee />
     </BrowserRouter>
   );
 }

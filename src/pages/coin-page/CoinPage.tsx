@@ -10,6 +10,7 @@ import {
   getPercentageMoveClass,
   getPercentageMoveSymbol,
 } from "../../core/utils/percentage.util";
+import useCryptoPrices from "../../core/hooks/useCryptoPrices.hook";
 
 export default function CoinList() {
   const { id } = useParams();
@@ -39,6 +40,8 @@ export default function CoinList() {
   const percentageMoveSymbol = getPercentageMoveSymbol(
     coinDetail.price_change_percentage_24h
   );
+
+  useCryptoPrices([coinDetail]);
 
   return (
     <main className="page-layout">

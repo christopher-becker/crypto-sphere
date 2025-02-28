@@ -1,5 +1,4 @@
 import CoinList from "../../components/coin/CoinList";
-import TickerMarquee from "../../components/ticker-marquee/TickerMarquee";
 import TopPerforming from "../../components/top-performing/TopPerformingCoinList";
 
 export default function HomePage() {
@@ -17,7 +16,6 @@ export default function HomePage() {
         />
       </div>
       <CoinList />
-      <TickerMarquee />
     </main>
   );
 }

@@ -54,7 +54,7 @@ export default function CoinRow({ coin }: { coin: CoinType }) {
               )}`}
             >
               {getPercentageMoveSymbol(coin.price_change_percentage_24h)}
-              {formattedChange}%
+              {formattedChange}
             </span>
           </div>
         </div>
