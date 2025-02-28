@@ -53,7 +53,7 @@ export default function TopPerformingCoinRow({
           </div>
         </div>
         <div className="flex flex-col sm:flex-row sm:gap-4 items-end sm:items-center relative">
-          <div className={`${directionClass}`}>${formattedPrice}</div>
+          <div className={`${directionClass}`}>{formattedPrice}</div>
           <div
             className={`text-xs ${getPercentageMoveClass(
               coin.price_change_percentage_24h

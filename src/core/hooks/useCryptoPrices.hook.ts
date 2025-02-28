@@ -4,7 +4,7 @@ import { CoinType } from "../types/coinGecko.type";
 import { BINANCE_WSS_URL } from "../constants/config.const";
 
 export default function useCryptoPrices(coins: CoinType[]) {
-  const { list, handleUpdateList } = useContext(CoinGeckoContext);
+  const { list, updateList } = useContext(CoinGeckoContext);
 
   useEffect(() => {
     if (!list) return;
@@ -21,7 +21,7 @@ export default function useCryptoPrices(coins: CoinType[]) {
 
     socket.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      handleUpdateList(data);
+      updateList(data);
     };
 
     socket.onerror = (error) => {

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import SearchCoin from "./search-coin/SearchCoin";
+import CurrencySelect from "./currency-select/CurrencySelect";
 
 export default function Header() {
   return (
@@ -11,7 +12,10 @@ export default function Header() {
             <strong className="hidden sm:flex">Crypto-Sphere</strong>
           </Link>
         </nav>
-        <SearchCoin />
+        <div className="flex gap-2">
+          <SearchCoin />
+          <CurrencySelect />
+        </div>
       </div>
     </header>
   );

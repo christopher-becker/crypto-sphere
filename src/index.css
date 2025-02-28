@@ -30,6 +30,10 @@ input {
   @apply h-8 px-4 bg-gray-900 rounded-xl hover:shadow-outline-white focus:shadow-double-outline-blue outline-none transition-all;
 }
 
+select {
+  @apply h-8 px-4 bg-gray-900 rounded-xl hover:shadow-outline-white focus:shadow-double-outline-blue outline-none transition-all;
+}
+
 .page-layout {
   @apply flex flex-col gap-12 max-w-3xl m-auto py-8;
 }

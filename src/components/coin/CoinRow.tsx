@@ -46,7 +46,7 @@ export default function CoinRow({ coin }: { coin: CoinType }) {
           </div>
           <div className="flex flex-col sm:flex-row sm:gap-5">
             <span className={`sm:w-24 text-right ${directionClass}`}>
-              ${formattedPrice}
+              {formattedPrice}
             </span>
             <span
               className={`text-sm sm:text-base sm:w-24 text-right ${getPercentageMoveClass(

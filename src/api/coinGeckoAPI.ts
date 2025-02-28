@@ -1,6 +1,9 @@
-import { COINGECKO_API_URL } from "../core/constants/config.const";
+import {
+  COINGECKO_API_URL,
+  DEFAULT_CURRENCY,
+} from "../core/constants/config.const";
 
-export async function getCoinsList(currency: string = "usd") {
+export async function getCoinsList(currency: string = DEFAULT_CURRENCY) {
   try {
     const endpoint = `${COINGECKO_API_URL}/coins/markets?vs_currency=${currency}&order=market_cap_desc`;
     const response = await fetch(endpoint);

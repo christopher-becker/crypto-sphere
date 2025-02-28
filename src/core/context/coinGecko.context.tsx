@@ -8,28 +8,37 @@ import {
 import { getCoinsList } from "../../api/coinGeckoAPI";
 import { CoinType } from "../types/coinGecko.type";
 import { Binance24hrTickerType } from "../types/binance.type";
+import { DEFAULT_CURRENCY } from "../constants/config.const";
 
 interface CoinGeckoContextType {
+  currency: string;
   list: CoinType[];
   isLoadingList: boolean;
-  handleUpdateList: (data: Binance24hrTickerType) => void;
+  updateList: (data: Binance24hrTickerType) => void;
+  updateCurrency: (data: string) => void;
 }
 
 export const CoinGeckoContext = createContext<CoinGeckoContextType>({
+  currency: DEFAULT_CURRENCY,
   list: [],
   isLoadingList: true,
-  handleUpdateList: () => {},
+  updateList: () => {},
+  updateCurrency: () => {},
 });
 
 export const CoinGeckoProvider = ({ children }: PropsWithChildren<unknown>) => {
+  const hasLocalStorageCurrency = localStorage.getItem("APP_CURRENCY");
+  const [currency, setCurrency] = useState<string>(
+    hasLocalStorageCurrency ?? DEFAULT_CURRENCY
+  );
   const [list, setList] = useState<CoinType[]>([]);
   const [isLoadingList, setIsLoadingList] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchCoinList = async () => {
       try {
-        const data: CoinType[] = await getCoinsList();
-        setList(() => data);
+        const data: CoinType[] = await getCoinsList(currency);
+        if (!!data) setList(() => data);
       } catch (error) {
         console.error("Failed to fetch coin list:", error);
       }
@@ -37,9 +46,9 @@ export const CoinGeckoProvider = ({ children }: PropsWithChildren<unknown>) => {
     };
 
     fetchCoinList();
-  }, []);
+  }, [currency]);
 
-  function handleUpdateList(data: Binance24hrTickerType) {
+  function updateList(data: Binance24hrTickerType) {
     const removeTicker = data.s.toLowerCase().replace("usdt", "");
     setList((current) =>
       current.map((coin) =>
@@ -54,9 +63,18 @@ export const CoinGeckoProvider = ({ children }: PropsWithChildren<unknown>) => {
     );
   }
 
+  function setCurrencyStorage(data: string) {
+    localStorage.setItem("APP_CURRENCY", data);
+  }
+
+  function updateCurrency(data: string) {
+    setCurrency(data);
+    setCurrencyStorage(data);
+  }
+
   const contextValue = useMemo(
-    () => ({ list, isLoadingList, handleUpdateList }),
-    [list, isLoadingList]
+    () => ({ currency, list, isLoadingList, updateList, updateCurrency }),
+    [currency, list, isLoadingList]
   );
 
   return (
